@@ -1,6 +1,13 @@
 // Add console.log to check to see if our code is working.
 console.log("working");
 
+// We create the dark view tile layer that will be the background of our map.
+let dark = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/dark-v10/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 18,
+    accessToken: API_KEY
+});
+
 // We create the tile layer that will be the background of our map.
 let streets = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -24,17 +31,20 @@ let satelliteStreets = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/sate
 // Create a base layer that holds both maps.
 let baseMaps = {
     "Streets": streets,
-    "Satellite Streets": satelliteStreets
+    "Satellite Streets": satelliteStreets,
+    "Dark": dark
   };
   // Create the earthquake layer for our map.
-let earthquakes = new L.layerGroup();
+let allearthquakes = new L.layerGroup();
 let tectonicplates = new L.layerGroup();
+let majorEQ = new L.layerGroup();
 
 // We define an object that contains the overlays.
 // This overlay will be visible all the time.
 let overlays = {
-    "Earthquakes": earthquakes,
-    "Tectonic Plates": tectonicplates
+    "Earthquakes": allearthquakes,
+    "Tectonic Plates": tectonicplates,
+    "Major Earthquakes": majorEQ
 };
 // Pass our map layers into our layers control and add the layers control to the map.
 L.control.layers(baseMaps, overlays).addTo(map);
@@ -99,10 +109,10 @@ L.geoJSON(data, {
     onEachFeature: function(feature, layer) {
     layer.bindPopup("Magnitude: " + feature.properties.mag + "<br>Location: " + feature.properties.place);
   }
-}).addTo(earthquakes);
+}).addTo(allearthquakes);
 
 // Add earthquake layer to map
-earthquakes.addTo(map);
+allearthquakes.addTo(map);
 tectonicplates.addTo(map);
 
 // Create a legend control object.
