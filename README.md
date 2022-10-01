@@ -18,3 +18,10 @@ The purpose of this project is to show the differences between the magnitudes of
 
 ## Results
 
+![tectonic plate](https://user-images.githubusercontent.com/107454933/193378504-fa36bb29-52b7-4a6c-91b7-09ae2fb8a8c6.png)
+
+![earthequake 4 5](https://user-images.githubusercontent.com/107454933/193378521-4ca32fec-2598-46b7-9b94-a0307adaf6a0.png)
+
+![sattelite and major earthquake ](https://user-images.githubusercontent.com/107454933/193378536-df331196-ffef-4328-a2a0-0022874d6a97.png)
+
+
